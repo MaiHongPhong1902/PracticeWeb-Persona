@@ -135,6 +135,7 @@ html, body {
 .other-items div {
     position: relative;
     padding: 10px;
+    margin: 5px;
 }
 .other-items div:hover {
     cursor: pointer;
