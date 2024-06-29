@@ -35,3 +35,23 @@ function toggleMenu() {
         }, 200); // Đợi 0.5s để hiệu ứng ẩn hoàn tất
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var contactCard = document.querySelector('.contact-card');
+    var menuIcon = document.getElementById('menu-mb');
+    var closeIcon = document.querySelector('.ti-close');
+
+    // Mở contact-card khi nhấn vào menu-icon
+    menuIcon.onclick = function() {
+        if (contactCard.classList.contains('open')) {
+            contactCard.classList.remove('open');
+        } else {
+            contactCard.classList.add('open');
+        }
+    };
+
+    // Đóng contact-card khi nhấn vào close-bar
+    closeIcon.onclick = function() {
+        contactCard.classList.remove('open');
+    };
+});

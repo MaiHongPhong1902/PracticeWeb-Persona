@@ -42,6 +42,80 @@ html, body {
     text-transform: uppercase;
     margin: 0;
 }
+/* contact-card */
+
+.contact-card {
+    width: 400px;
+    bottom: 0;
+    right: -400px; /* Vị trí ban đầu ở ngoài trình duyệt */
+    top: 0;
+    position: fixed;
+    z-index: 22;
+    background-color: #333;
+    color: #ffffff;
+    overflow-y: scroll;
+    display: flex;
+    transition: right 0.5s ease-in-out; /* Thêm hiệu ứng chuyển động */
+}
+.contact-card.open {
+    right: 0; /* Vị trí khi mở */
+}
+
+.contact-card::-webkit-scrollbar {
+    display: none;
+}
+.contact-card .close-bar {
+    position: fixed;
+    padding: 5px;
+    background-color: #333;
+    display: flex;
+    flex-grow: 1;
+    width: 400px;
+    flex-direction: row-reverse;
+    padding: 10px;
+}
+.contact-card .close-bar .ti-close{
+    font-size: 28px;
+    padding: 2px;
+}
+.main-card{
+    padding: 40px;
+}
+.main-card .about-me h2 {
+    text-align: left;
+    margin: 10px 0;
+}
+
+
+.about-me img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 2px;
+}
+
+
+
+.portfolio-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.portfolio-items img {
+    width: 30%;
+    margin-bottom: 20px;
+}
+
+.main-card p {
+    text-align: justify;
+    margin: 10px 0;
+}
+
+
+
 
 /* MENU */
 .header {
