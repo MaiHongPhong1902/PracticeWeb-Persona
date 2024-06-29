@@ -1,0 +1,686 @@
+/* Universal selector to remove default margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Setting default styles for html and body */
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-family);
+    line-height: var(--line-height);
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+:root {
+    --header-height: 82px;
+    --font-size: 18px;
+    --font-bold: 600;
+    --font-light: 540;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --background-color: #ffffff;
+    --text-color: #1b1818;
+    --font-family: Arial, sans-serif;
+    --line-height: 1.6;
+    --highlight-color: #a50000;
+    --submenu-bg: #ebebeb;
+    --box-shadow-hover: rgba(0, 0, 0, 0.2);
+    --menu-border-color: #ccc;
+}
+
+.title {
+    font-size: 36px;
+    text-transform: uppercase;
+    margin: 0 0 5px 0;
+}
+.name-title {
+    font-size: 45px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* MENU */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+    background: var(--background-color);
+    height: var(--header-height);
+    display: flex;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.fw-container {
+    width: 900px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+.logo img {
+    height: 40px;
+}
+.frame {
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    float: left;
+}
+.menu-item {
+    position: relative;
+}
+.menu-item li {
+    height: 100%;
+    display: flex;
+}
+.menu-item a:hover {
+    background: #00000021;
+    color: var(--highlight-color);
+}
+
+.menu-item:first-child a {
+    color: var(--highlight-color);
+    font-weight: var(--font-bold);
+}
+.menu a {
+    color: var(--text-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    padding: 0 15px;
+    line-height: var(--header-height);
+    height: 100%;
+    display: block;
+}
+
+/* SUB-MENU */
+.menu-item .sub-menu {
+    background: var(--submenu-bg);
+    width: 200px;
+    position: absolute;
+    text-align: left;
+    left: 0; 
+    top: var(--header-height);
+    display: none;
+}
+.sub-menu a {
+    width: 100%;
+    line-height: 50px;
+}
+
+.hover-menu:hover .sub-menu {
+    display: block; /* Only display submenu when hovering over Blog */
+}
+
+/* other-items */
+.other-items {
+    display: flex;
+}
+.other-items div {
+    position: relative;
+    padding: 10px;
+}
+.other-items div:hover {
+    cursor: pointer;
+}
+
+.shop-bag .sub-shop-bag {
+    background: var(--submenu-bg);
+    width: 200px;
+    position: absolute;
+    text-align: left;
+    right: 0; /* Điều chỉnh để căn submenu */
+    top: 20px; /* Điều chỉnh để căn submenu */
+    border-radius: 5px;
+    display: none;
+    padding: 0 10px;
+}
+
+.sub-shop-bag a {
+    width: 100%;
+    line-height: 35px;
+    text-decoration: none;
+    padding: 0 15px;
+    color: var(--text-color);
+    word-wrap: break-word; /* Tự động xuống dòng khi từ quá dài */
+    overflow-wrap: break-word; /* Tự động xuống dòng khi từ quá dài */
+    white-space: normal; /* Cho phép text xuống dòng */
+}
+
+.sub-shop-bag li {
+    list-style: none;
+}
+
+.shop-bag:hover .sub-shop-bag {
+    display: block;
+}
+
+.sub-shop-bag .sub-shop-items:hover {
+    background: #00000021;
+    color: var(--highlight-color);
+}
+
+.sub-shop-bag .sub-shop-items:hover a {
+    color: var(--highlight-color);
+}
+
+.icon-hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* search */
+.search-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 21;
+    background: var(--background-color);
+    height: var(--header-height);
+    line-height: var(--header-height);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    opacity: 0; /* Bắt đầu với độ mờ 0 */
+    visibility: hidden; /* Bắt đầu với trạng thái ẩn */
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* Thêm hiệu ứng chuyển đổi */
+}
+
+.search-bar.visible {
+    opacity: 1; /* Khi hiển thị, độ mờ thay đổi */
+    visibility: visible; /* Khi hiển thị, trạng thái hiển thị */
+}
+
+
+.search-icon_1, .close-icon {
+    display: flex;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.search-input {
+    display: flex;
+    width: 40%;
+}
+
+.search-input input {
+    border: none;
+    width: 100%;
+    height: calc(var(--header-height) / 2);
+    font-size: 20px;
+    display: inline-block;
+}
+
+.search-input input:focus {
+    outline: none;
+    border-color: transparent;
+}
+
+.separator {
+    width: 1px;
+    height: 100%;
+    background-color: #000;
+    margin: 0 40px;
+}
+/* ---------BANNER--------- */
+.banner-block {
+    top: var(--header-height);
+    position: relative;
+    width: 100%;
+    height: auto; /* Adjust the height as needed */
+}
+
+.banner-item {
+    background-image: url(//promo-theme.com/persona-wp/wp-content/uploads/2017/03/present.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 600px; /* Adjust height as needed */
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Content */
+.fr-content {
+    position: relative;
+    background-color: var(--background-color);
+    top: var(--header-height);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.content:first-child {
+    padding: 50px 0;
+}
+.underliner {
+    width: 10%;
+    height: 7px;
+    background-color: #000;
+}
+.text-bio {
+    max-width: 900px;
+    text-align: center;
+    font-size: var(--font-light);
+}
+
+/* content-item */
+.content-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+.content-list .content-item {
+    text-align: center;
+    width: calc(33.33% - 40px); /* 3 items per row with 20px gap */
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm hiệu ứng chuyển đổi mượt mà */
+}
+.content-list .content-item img {
+    width: 100%;
+    height: auto; /* Giữ tỷ lệ khung hình */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Thêm hiệu ứng chuyển đổi mượt mà */
+}
+.content-list .content-item:hover {
+    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+    box-shadow: 0 4px 8px var(--box-shadow-hover); /* Thêm bóng đổ nhẹ khi hover */
+}
+.content-list .content-item img:hover {
+    opacity: 0.7; /* Thay đổi độ mờ khi hover */
+}
+.content-list .content-item p {
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.content-list .content-item p:hover {
+    cursor: pointer;
+}
+
+/* About */
+.About-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.section-subtitle {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #888;
+}
+
+.section-title {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin: 40px 0;
+}
+
+.section-divider {
+    width: 50px;
+    height: 4px;
+    background-color: #000;
+    margin: 20px auto;
+}
+
+.section-description {
+    font-size: 1.1em;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+.feature {
+    background-color: var(--background-color);
+    padding: 20px;
+    width: calc(33.333% - 40px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature i {
+    font-size: 2.5em;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.feature h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 1em;
+    color: #666;
+}
+
+.feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px var(--box-shadow-hover);
+}
+
+/* Buy Contact */
+.buy-contact-block {
+    width: 100%;
+    height: 400px; /* Adjust the height as needed */
+    display: flex;
+    justify-content: flex-start; /* Align content to the start (left) */
+    align-items: center;
+    position: relative;
+    background-image: url(//promo-theme.com/persona-wp/wp-content/uploads/2017/03/banner-present.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 0 20px; /* Optional: Add padding for spacing from the edges */
+}
+
+.buy-contact-item {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start; /* Align content to the start (left) */
+    align-items: center;
+    position: relative;
+    margin-left: 20%;
+}
+
+.buy-contact-content {
+    text-align: left; /* Align text to the left */
+    color: #4e4e4e;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 50%; /* Optional: Limit the width of the content */
+}
+
+.buy-contact-content h2 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.buy-contact-content p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.buy-contact-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.buy-contact-button:hover {
+    background: #333;
+}
+/* FOOTER */
+.footer {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.footer-tags {
+    margin-bottom: 20px;
+}
+
+.footer-tags h3 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.footer-tags .tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.footer-tags .tags a {
+    padding: 5px 10px;
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.footer-tags .tags a:hover {
+    background: #555;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5%; /* Adjust the gap between elements */
+    padding: 20px 0;
+    border-top: 1px solid #444;
+    border-bottom: 1px solid #444;
+}
+
+.footer-logo img {
+    height: 40px;
+    color: #ffffff;
+}
+
+.footer-menu {
+    font-size: 0.9em;
+}
+
+.footer-menu a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.footer-menu a:hover {
+    color: #aaa;
+}
+
+.footer-social a {
+    color: #fff;
+    font-size: 1.2em;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.footer-social a:hover {
+    color: #aaa;
+}
+
+.footer-copy {
+    margin-top: 20px;
+    font-size: 0.8em;
+    color: #aaa;
+}
+
+
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .shop-bag .sub-shop-bag {
+        max-width: 500px;
+        right: -40px;
+        top: 40px; /* Điều chỉnh để căn submenu */
+        padding-left: 15px;
+    }
+    .sub-shop-bag a {
+        line-height: 50px;
+        padding: 0 5px;
+    }
+
+    .menu-icon {
+        display: block; /* Hiển thị biểu tượng menu trên màn hình nhỏ */
+    }
+
+    .menu {
+        display: none; /* Ẩn menu mặc định */
+        flex-direction: column;
+        width: 100%;
+        min-height: 800px;
+        position: absolute;
+        left: 0;
+        background: var(--background-color);
+        z-index: 20;
+        padding: 0;
+    }
+
+    .menu.active {
+        display: flex; /* Hiển thị menu khi được kích hoạt */
+        top: var(--header-height);
+    }
+
+    .menu-item {
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+        border-bottom: 1px solid var(--menu-border-color); /* Đường kẻ giữa các mục menu */
+    }
+
+    .other-items {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+/* FOOTER */
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* content-RESPONSIVE */
+@media (max-width: 768px) {
+    .content-list .content-item {
+        width: calc(50% - 20px); /* 2 items per row with 10px gap */
+    }
+}
+
+@media (max-width: 480px) {
+    .fr-content {
+        padding: 10px; /* Giảm padding trên thiết bị nhỏ */
+    }
+    .title, .name-title {
+        text-align: center;
+        font-size: 1.5em; /* Điều chỉnh kích thước font cho tiêu đề */
+    }
+    .underliner {
+        width: 20%; /* Điều chỉnh độ rộng của underliner */
+    }
+    .text-bio {
+        font-size: 1em; /* Điều chỉnh kích thước font cho văn bản */
+        padding: 0 5px; /* Thêm padding để văn bản không chạm mép */
+    }
+    .content-list {
+        gap: 10px; /* Adjust gap for mobile */
+    }
+    .content-list .content-item {
+        width: calc(100% - 20px); /* 1 item per row with 10px gap each side */
+        padding: 5px;
+    }
+}
+
+/* About-RESPONSIVE */
+@media (max-width: 992px) {
+    .feature {
+        width: calc(50% - 20px);
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .feature {
+        width: 100%;
+    }
+    .feature i {
+        font-size: 1.5em;
+        color: #000;
+        margin-bottom: 10px;
+    }
+    .feature h3 {
+        font-size: 1em;
+        margin-bottom: 10px;
+    }
+
+    /* buy-Contact */
+    .buy-contact-block {
+        justify-content: center; /* Center content on mobile devices */
+        background-position: center; /* Center the background image on mobile devices */
+    }
+    
+    .buy-contact-item {
+        width: 100%;
+        height: 400px;
+        display: flex;
+        margin-left: 0;
+        align-items: center;
+        position: relative;
+    }
+   
+
+    .buy-contact-content {
+        max-width: 90%; /* Adjust width for mobile devices */
+        color: #242424;
+        padding: 5px;
+        border-radius: 10px;
+    }
+   
+    .buy-contact-content h2 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+    .buy-contact-content p {
+        font-size: 1em;
+        margin-bottom: 20px;
+    }
+    .buy-contact-button {
+        display: inline-block;
+        padding: 10px 10px;
+        font-size: 1em;
+        text-align: center;
+    }
+}
